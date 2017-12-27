@@ -5,5 +5,12 @@
     </head>
     <h1>The start of Pomodoro app</h1>
     This app is running on electron version: <span id="version"></span>.
+
+    <h2>Pomodoro Clock</h2>
+    <span id="clock">
+        <span id="minutes"></span>:<span id="seconds"></span>
+    </span>
+    <button name="startTimer" id="startTimer">Start Timer</button>
+    <button name="stopTimer" id="stopTimer">Stop Timer</button>
     <script>require('./src/renderer.js')</script>
 </html>
