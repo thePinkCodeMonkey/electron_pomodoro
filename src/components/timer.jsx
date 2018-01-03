@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const DefaultPomodoroInSeconds = 5 //25 * 60
+const DefaultPomodoroInSeconds = 25 * 60
 class Timer extends React.Component {
     constructor () {
         super()
@@ -16,7 +16,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div className='Timer'>
-                {prettyPrint(Math.floor(this.state.currentTimer / 60))}:{prettyPrint(this.state.currentTimer % 60)}
+                {this.prettyPrint(Math.floor(this.state.currentTimer / 60))}:{this.prettyPrint(this.state.currentTimer % 60)}
                 <button onClick={this.startTimer}>Start Timer</button>
                 <button onClick={this.stopTimer}>Stop Timer</button>
             </div>
@@ -24,7 +24,6 @@ class Timer extends React.Component {
     }
 
     prettyPrint(value) {
-        return value < 10
         return value < 10 ? '0' + value.toString() : value
     }
 
