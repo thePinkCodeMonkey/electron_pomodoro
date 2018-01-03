@@ -1,5 +1,6 @@
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+import {app, BrowserWindow} from 'electron'
+import path from 'path'
+
 let mainWindow
 let appLocation = path.join('file://', __dirname, 'index.html')
 
@@ -18,5 +19,5 @@ const createMainWindow = function () {
 
 app.on('ready', createMainWindow)
 app.on('window-all-closed', () => {
-
+    //TODO was I suppose to do something here?
 })

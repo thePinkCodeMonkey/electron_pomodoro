@@ -1,11 +1,16 @@
-const { remote } = require('electron')
+//Module Imports
+import { remote } from 'electron'
+import React from 'react'
+import ReactDom from 'react-dom'
 
+import Timer from './src/components/timer'
 const versionElement = document.querySelector('#version')
-versionElement.innerText = process.versions.electron
-
 const currentWindow = remote.getCurrentWindow()
+const DefaultPomodoroInSeconds = 25 * 60
 
-const DefaultPomodoroInSeconds = 5//25 * 60
+
+// TODO: `stop` play sound after timer hits zero
+// TODO: move default settings to a json file somewhere
 let currentTimer = DefaultPomodoroInSeconds
 let intervalId = null
 
@@ -13,31 +18,36 @@ const prettyPrint = (value) => {
     return value < 10 ? '0' + value.toString() : value
 }
 
-document.querySelector('#minutes').innerText = prettyPrint(Math.floor(currentTimer / 60))
-document.querySelector('#seconds').innerText = prettyPrint(currentTimer % 60)
+const setTimerText = timerInSeconds => {
+    document.querySelector('#minutes').innerText = prettyPrint(Math.floor(timerInSeconds / 60))
+    document.querySelector('#seconds').innerText = prettyPrint(timerInSeconds % 60)
+}
 
-// TODO: stop timer after it hits zero
-// TODO: stop play sound after timer hits zero
+setTimerText(currentTimer)
+
 const startTimer = () => {
     intervalId = setInterval(() => {
        updateTimer() 
-    }, 1000);
-}
-const updateTimer = () => {
-    currentTimer -= 1;
-    document.querySelector('#minutes').innerText = prettyPrint(Math.floor(currentTimer / 60))
-    document.querySelector('#seconds').innerText = prettyPrint(currentTimer % 60)
-    if (currentTimer == 0 ) {
-        stopTimer()
-    }
+    }, 1000)
 }
 
 const stopTimer = () => {
     clearInterval(intervalId)
 }
 
+const updateTimer = () => {
+    currentTimer -= 1;
+    setTimerText(currentTimer)
+    if (currentTimer <= 0 ) {
+        stopTimer()
+    }
+}
+
+//Event Listener
 document.querySelector('#startTimer').addEventListener('click', startTimer)
 document.querySelector('#stopTimer').addEventListener('click', stopTimer)
-currentWindow.addEventListener('beforeunload', () => {
+currentWindow.addListener('beforeunload', () => {
     stopTimer()
 })
+
+ReactDom.render(<Timer />, document.getElementById('app'))

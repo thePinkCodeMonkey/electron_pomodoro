@@ -9,8 +9,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
   "devDependencies": {
-    "electron": "^1.7.10"
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2016-node5": "^1.1.2",
+    "babel-preset-react": "^6.24.1",
+    "electron": "^1.7.10",
+    "electron-prebuilt-compile": "^1.8.2-beta.3"
   }
 }

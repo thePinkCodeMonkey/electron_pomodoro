@@ -3,8 +3,6 @@
         <title>My Pomodoro</title>
         <link rel="stylesheet" href="./src/main.css" />
     </head>
-    <h1>The start of Pomodoro app</h1>
-    This app is running on electron version: <span id="version"></span>.
 
     <h2>Pomodoro Clock</h2>
     <span id="clock">
@@ -12,5 +10,6 @@
     </span>
     <button name="startTimer" id="startTimer">Start Timer</button>
     <button name="stopTimer" id="stopTimer">Stop Timer</button>
-    <script>require('./src/renderer.js')</script>
+    <div id="app"></div>
+    <script src="src/renderer.js"></script>
 </html>
